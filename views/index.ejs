@@ -25,10 +25,27 @@
     <script data-main="/javascripts/main.js" src="/javascripts/require.js" ></script>
   </head>
   <body>
-    <div ng-controller="MyController" >
-      <p>What's your name?</p>
-      <input ng-model="person.name" type="text" />
-      <p>Hello, {{person.name}}</p>
+    <div ng-controller="TodoCtrl" >
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th></th>
+        </tr>
+
+        <tr ng-repeat="task in tasks" >
+          <td ng-bind="task.name"></td>
+          <td ng-bind="task.description"></td>
+          <td><button ng-click="remove($index)">Finished!</button></td>
+        </tr>
+
+        <tr>
+          <td><input type="text" ng-model="new_task.name" /></td>
+          <td><input type="text" ng-model="new_task.description" /></td>
+          <td><button ng-click="add()" ng-disabled="is_invalid" >Add</button></td>
+        </tr>
+      </table>
+
     </div>
   </body>
 </html>

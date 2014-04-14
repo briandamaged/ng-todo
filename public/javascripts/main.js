@@ -25,9 +25,31 @@ window.name = "NG_DEFER_BOOTSTRAP!";
 requirejs(['jquery', 'bootstrap', 'angular'], function($) {
   var app = angular.module('MyApp', [])
 
-  app.controller("MyController", function($scope) {
-    
+  app.controller("TodoCtrl", function($scope) {
+    $scope.tasks = [
+      {name: "Brush teeth", description: "For a healthy smile!"},
+      {name: "Sleep", description: "Zzzzz"}
+    ]
+
+    $scope.new_task = {
+      name: "Learn Angular",
+      description: "Because brain."
+    }
+
+    $scope.remove = function(index) {
+      $scope.tasks.splice(index, 1)
+    }
+
+    $scope.add = function() {
+      $scope.tasks.push($scope.new_task)
+      $scope.new_task = {name: "", description: ""}
+    }
+
+    $scope.$watch('new_task.name', function(newVal, oldVal, scope) {
+      $scope.is_invalid = ($scope.new_task.name.length == 0)
+    })
   })
+
 
   angular.element().ready(function() {
     angular.resumeBootstrap();
