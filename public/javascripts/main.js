@@ -19,8 +19,19 @@ requirejs.config({
 })
 
 
+//http://code.angularjs.org/1.2.1/docs/guide/bootstrap#overview_deferred-bootstrap
+window.name = "NG_DEFER_BOOTSTRAP!";
+
 requirejs(['jquery', 'bootstrap', 'angular'], function($) {
-  
+  var app = angular.module('MyApp', [])
+
+  app.controller("MyController", function($scope) {
+    
+  })
+
+  angular.element().ready(function() {
+    angular.resumeBootstrap();
+  });
 })
 
 
