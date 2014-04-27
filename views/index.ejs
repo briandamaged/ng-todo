@@ -36,7 +36,7 @@
         <tr ng-repeat="task in tasks" >
           <td ng-bind="task.name"></td>
           <td ng-bind="task.description"></td>
-          <td><button ng-click="remove($index)">Finished!</button></td>
+          <td><button ng-click="remove(task.id)">Finished!</button></td>
         </tr>
 
         <tr>
